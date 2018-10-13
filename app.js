@@ -6,13 +6,22 @@ $(document).ready(function () {
     $('body').append(div);
     $('div').append(ul);
 
-    //gives li when button is clicked
+    //creates li when button is clicked
     $('#btnSubmit').click(function () {
         let text = $('#textInput').val();
-        // $('h2').append(text);
         let li = document.createElement('li');
         $(li).append(text);
         $('ul').append(li);
+        //changes color of li text
+        $(li).click(function () {
+            let colors = ["blue", "green", "yellow", "orange", "red", "purple"];
+            let randomColor = () => colors[Math.ceil(Math.random() * colors.length - 1)];
+            this.style.color = randomColor();
+        });
+        //deletes li when dblclicked
+        $(li).dblclick(function () {
+            $(this).remove();
+        });
         return false;
     });
 
@@ -25,20 +34,12 @@ $(document).ready(function () {
         }
     };
 
-    //changes color of li
-    //not working yet
-    $('li').click(function () {
-        let colors = ["blue", "green", "yellow", "orange", "red", "purple"];
-        let randomColor = () => colors[Math.ceil(Math.random() * colors.length - 1)];
-        this.style.color = randomColor();
-
-    })
 
 
 
 
-    //hovering
     //not needed
+    //hovering
     // $('h2').hover(function() {
     //     $(this).css({"background-color": "blue", "border-radius": "5px"});
     // }, function() {
