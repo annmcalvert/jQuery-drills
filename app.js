@@ -1,27 +1,29 @@
 $(document).ready(function () {
 
+    let colors = ["blue", "green", "yellow", "orange", "red", "purple"];
+    let randomColor = () => colors[Math.ceil(Math.random() * colors.length - 1)];
+
     //creates a div and ul
-    let div = document.createElement('div');
-    let ul = document.createElement('ul');
+    let div = $('<div>');
+    let ul = $('<ul>');
+    $(div).append(ul);
     $('body').append(div);
-    $('div').append(ul);
+    
 
     //creates li when button is clicked
     $('#btnSubmit').click(function () {
         let text = $('#textInput').val();
-        let li = document.createElement('li');
-        $(li).append(text);
-        $('ul').append(li);
+        let li = $('<li>').text(text);
         //changes color of li text
         $(li).click(function () {
-            let colors = ["blue", "green", "yellow", "orange", "red", "purple"];
-            let randomColor = () => colors[Math.ceil(Math.random() * colors.length - 1)];
             this.style.color = randomColor();
         });
         //deletes li when dblclicked
         $(li).dblclick(function () {
             $(this).remove();
         });
+        $(ul).append(li);
+        $('#textInput').val('');
         return false;
     });
 
